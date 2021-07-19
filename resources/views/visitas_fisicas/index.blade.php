@@ -105,12 +105,7 @@
 											</span>Nuevo Registro</a>
 											<!--end::Button-->
 										</div>
-                                        
-									</div>
-									<div class="card-body">
-                                    <div class="table-responsive">
-                        <table class="table">
-						<div class="col-xl-12">
+										<div class="col-xl-12">
                                         <form action="{{route('visitas_fisicas.index')}}" method="get">
                                             <div class="form-row">
                                                 <div class="col-sm-4 my-1">
@@ -119,23 +114,34 @@
                                                 <div class="col-auto my-1">
                                                     <input type="submit" class="btn btn-primary" value="Buscar">
                                                 </div>
+												<!--<div class="col-sm-4 my-1">
+												    
+								                    Resultados {{$visitas_fisicas->total()}}
+												    
+								                </div>-->
                                             </div>
                                         </form>
                                         </div>
-                            <thead>
+                                        
+									</div>
+						<div class="card-body">
+                        <div class="table-responsive">
+                        <table class="table table-hover table-sm">
+						
+                            <thead class="bg-secondary">
                                 <tr>
-                                    <th>ID</th>
+                                    <th scope="col">ID</th>
                                     <th>Año</th>
-                                    <th>Numero de cedula</th>
-                                    <th>Fecha de cedula</th>
+                                    <th>Numero cedula</th>
+                                    <th>Fecha cedula</th>
                                     <th>Calle</th>
                                     <th>Colonia</th>
                                     <th>Alcaldia</th>
                                     <th>Cuenta catastral</th>
                                     <th>Uso</th>
-                                    <th>Superficie del terreno</th>
-                                    <th>Folio de solicitud</th>
-                                    <th>Oficio de solicitud</th>
+                                    <th>Superficie terreno</th>
+                                    <th>Folio solicitud</th>
+                                    <th>Oficio solicitud</th>
                                     <th>Referencia</th>
                                     <th>Realizo</th>
                                     <th>Opciones</th>
@@ -163,9 +169,15 @@
                                     <td>{{$visita_fisica->oficio_de_solicitud}}</td>
                                     <td>{{$visita_fisica->referencia}}</td>
                                     <td>{{$visita_fisica->realizo}}</td>
-                                    <td><a href="{{route('visitas_fisicas.edit',$visita_fisica->id)}}" class="btn btn-warning btn-sm">Editar</a> 
-									<button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$visita_fisica->id}}">
-  										Eliminar
+                                    <td><a href="{{route('visitas_fisicas.edit',$visita_fisica->id)}}" class="btn btn-hover-success btn-icon btn-pill btn-sm" title="Editar Registro">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+  										<path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+									</svg>
+									</a>
+									<button type="button" class="btn btn-hover-danger btn-icon btn-pill btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$visita_fisica->id}}" title="Borrar Registro">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+  										<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+									</svg>
 									</button>
 									</td>
                                 </tr>
@@ -174,11 +186,10 @@
                             @endif
                             </tbody>
                         </table>
-						{{$visitas_fisicas->setPageName($texto)}}
-                    </div>
-								</div>
-								</span>Numero de registros {{$visitas_fisicas->total()}}</a>
-								</div>
+						{{$visitas_fisicas->appends(['texto'=>$texto])->links()}}
+                        </div>
+					    </div>
+					</div>			
 <!--                 </div>
             </div>
 </body>
@@ -186,8 +197,11 @@
 
 {{-- Scripts Section --}}
 @section('scripts')
+    
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
     <script src="{{ asset('js/pages/widgets.js') }}" type="text/javascript"></script>
+	
 @endsection

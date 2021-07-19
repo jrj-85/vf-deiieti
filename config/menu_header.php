@@ -6,7 +6,7 @@ return [
         [],
         [
             'title' => 'Dashboard',
-            'root' => true,
+            'root' => false,
             'page' => '/',
             'new-tab' => false,
         ],

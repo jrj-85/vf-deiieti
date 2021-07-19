@@ -20,10 +20,11 @@ class Visita_FisicaController extends Controller
         $texto=trim($request->get('texto'));
         $visitas_fisicas=DB::table('visitas_fisicas')
                     ->select('id', 'año', 'numero_de_cedula', 'fecha_de_cedula',  'calle', 'colonia', 'alcaldia', 'cuenta_catastral', 'uso', 'superficie_del_terreno', 'folio_de_solicitud', 'oficio_de_solicitud', 'referencia', 'realizo')
-                    ->Where('calle', 'LIKE', '%'.$texto.'%')
-                    ->orWhere('colonia', 'LIKE', '%'.$texto.'%')
-                    ->orWhere('alcaldia', 'LIKE', '%'.$texto.'%')
-                    ->orWhere('realizo', 'LIKE', '%'.$texto.'%')
+                    ->Where('calle', 'ILIKE', '%'.$texto.'%')
+                    ->orWhere('numero_de_cedula', 'ILIKE', '%'.$texto.'%')
+                    ->orWhere('colonia', 'ILIKE', '%'.$texto.'%')
+                    ->orWhere('alcaldia', 'ILIKE', '%'.$texto.'%')
+                    ->orWhere('realizo', 'ILIKE', '%'.$texto.'%')
                     ->orderBY('id', 'asc')
                     ->paginate(10);
 

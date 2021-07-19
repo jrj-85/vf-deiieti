@@ -10,7 +10,7 @@
             @endphp
 
             @if (config('layout.header.self.theme') === 'light')
-                @php $kt_logo_image = 'logo-dark.png' @endphp
+                @php $kt_logo_image = 'logos/secretaria-finanzas.png' @endphp
             @elseif (config('layout.header.self.theme') === 'dark')
                 @php $kt_logo_image = 'logo-light.png' @endphp
             @endif
@@ -20,18 +20,20 @@
                 @if(config('layout.aside.self.display') == false)
                     <div class="header-logo">
                         <a href="{{ url('/') }}">
-                            <img alt="Logo" src="{{ asset('media/logos/'.$kt_logo_image) }}"/>
+                            <img alt="Logo" src="{{ asset('media/logos/'.$kt_logo_image) }}" width="350"/>
                         </a>
                     </div>
                 @endif
-
-                <div id="kt_header_menu" class="header-menu header-menu-mobile {{ Metronic::printClasses('header_menu', false) }}" {{ Metronic::printAttrs('header_menu') }}>
-                    <ul class="menu-nav {{ Metronic::printClasses('header_menu_nav', false) }}">
-                        {{ Menu::renderHorMenu(config('menu_header.items')) }}
-                    </ul>
+                <div class="header">
+                <h2 class="card-label">
+                D G P I
+                </h2>                 
                 </div>
-            </div>
 
+
+                
+            </div>
+            
         @else
             <div></div>
         @endif

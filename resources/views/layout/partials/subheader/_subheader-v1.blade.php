@@ -3,6 +3,12 @@
 <div class="subheader py-2 {{ Metronic::printClasses('subheader', false) }}" id="kt_subheader">
     <div class="{{ Metronic::printClasses('subheader-container', false) }} d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
 
+        <div id="kt_header_menu" class="header-menu header-menu-mobile {{ Metronic::printClasses('header_menu', false) }}" {{ Metronic::printAttrs('header_menu') }}>
+                    <ul class="menu-nav {{ Metronic::printClasses('header_menu_nav', false) }}">
+                        {{ Menu::renderHorMenu(config('menu_header.items')) }}
+                    </ul>
+        </div>
+
 		{{-- Info --}}
         <div class="d-flex align-items-center flex-wrap mr-1">
 
@@ -32,6 +38,7 @@
                 </ul>
             @endif
         </div>
+        
 
 		{{-- Toolbar --}}
         <div class="d-flex align-items-center">
